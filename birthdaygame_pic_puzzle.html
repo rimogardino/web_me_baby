@@ -1,0 +1,105 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Page Title</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>jQuery UI Draggable - Default functionality</title>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  <style>
+  #draggable { width: 150px; height: 150px; padding: 0.5em; }
+  </style>
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script type="text/javascript"> 
+$(document).ready(function(){
+	var dpx = 150;
+	
+	for (let xi=0;xi<4;xi++) {
+		for (let yi=0;yi<4;yi++) {
+			let pxi = xi*dpx;
+			let pxiS = pxi.toString() + "px";
+			let pxiPlusS = (pxi + 150).toString() + "px";
+			let pyi = yi*dpx;
+			let pyiS = pyi.toString() + "px";
+			let pyiPlusS = (pyi + 150).toString() + "px";
+			
+			let insetStr = "rect(" + pyiS + ", " + pxiPlusS + ", " + pyiPlusS + ", " + pxiS + ")";
+			
+			let clipID = "clip_" + xi.toString() + yi.toString();
+			let puzzle_partID = "puzzle_part_" + xi.toString() + yi.toString();
+			$ (".main_wrapper").append('<div id="' + puzzle_partID + '" class="puzzle_part draggable"><img  id="'+ clipID + '" src="https://i.imgur.com/3WJYfsK.jpg" width="450px"/></div>');
+			$ ("#" + clipID).css({
+				"position": "absolute",
+				"clip": insetStr,
+				left: "-" + pxiS,
+				top: "-" + pyiS
+			});			
+			
+		}
+	
+	}
+	
+	
+
+	$ (".draggable").draggable( { grid: [ dpx, dpx ], stack: ".draggable" } );
+
+	for (let xi=0;xi<4;xi++) {
+		for (let yi=0;yi<4;yi++) {
+			let pyi = yi*dpx + xi*600;
+			let pyiS = "-" + pyi.toString() + "px";
+
+			let puzzle_partID = "puzzle_part_" + xi.toString() + yi.toString();
+			
+			$ ("#" + puzzle_partID).css({
+				top: pyiS
+			});
+			
+		}
+	}
+	
+	
+/*
+
+-webkit-clip-path: inset(30px 10px 30px 10px);
+  clip-path: inset(30px 10px 30px 10px);
+			shape(top, right, bottom, left)
+
+"-webkit-clip-path": "inset(${pyi}px, ${pxi+150}px, ${pyi+150}px, ${pxi}px)", "clip-path": "inset(${pyi}px, ${pxi+150}px, ${pyi+150}px, ${pxi}px)"
+*/
+
+});
+</script>
+<style>
+.puzzle_part {
+	position: relative;
+	width: 150px;
+	height: 150px;
+}
+
+
+
+#clip01 {
+    position: absolute;
+    clip: rect(0, 150px, 150px, 0);
+    /* clip: shape(top, right, bottom, left); NB 'rect' is the only available option */
+}
+#clip02 {
+    position: absolute;
+    clip: rect(150px, 300px, 300px, 150px);
+	left: -150px;
+	top: -150px;
+    /* clip: shape(top, right, bottom, left); NB 'rect' is the only available option */
+}
+
+</style>
+
+</head>
+
+<body>
+<div class="main_wrapper">
+
+</div>
+</body>
+</html> 
