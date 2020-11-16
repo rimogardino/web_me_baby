@@ -4,7 +4,8 @@
 <title>Page Title</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>jQuery UI Draggable - Default functionality</title>
+
+
   <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
   <link rel="stylesheet" href="/resources/demos/style.css">
   <style>
@@ -12,6 +13,7 @@
   </style>
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  
 <script type="text/javascript"> 
 $(document).ready(function(){
 	var dpx = 150;
@@ -29,7 +31,7 @@ $(document).ready(function(){
 			
 			let clipID = "clip_" + xi.toString() + yi.toString();
 			let puzzle_partID = "puzzle_part_" + xi.toString() + yi.toString();
-			$ (".main_wrapper").append('<div id="' + puzzle_partID + '" class="puzzle_part draggable"><img  id="'+ clipID + '" src="https://i.imgur.com/3WJYfsK.jpg" width="450px"/></div>');
+			$ ("body").append('<div id="' + puzzle_partID + '" class="puzzle_part draggable"><img  id="'+ clipID + '" src="https://i.imgur.com/3WJYfsK.jpg" width="450px"/></div>');
 			$ ("#" + clipID).css({
 				"position": "absolute",
 				"clip": insetStr,
@@ -45,6 +47,7 @@ $(document).ready(function(){
 
 	$ (".draggable").draggable( { grid: [ dpx, dpx ], stack: ".draggable" } );
 /*
+
 	for (let xi=0;xi<4;xi++) {
 		for (let yi=0;yi<4;yi++) {
 			let pyi = yi*dpx + xi*600;
@@ -72,6 +75,13 @@ $(document).ready(function(){
 });
 </script>
 <style>
+/*
+.main_wrapper {
+	width: 100%;
+	height: 100%;
+}
+*/
+
 .puzzle_part {
 	position: relative;
 	width: 150px;
@@ -99,6 +109,8 @@ $(document).ready(function(){
 
 <body>
 <div class="main_wrapper">
+
+
 
 </div>
 </body>
